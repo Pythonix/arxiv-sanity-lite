@@ -114,7 +114,7 @@ def get_metas_db(flag='r', autocommit=True):
     mdb = SqliteDict(PAPERS_DB_FILE, tablename='metas', flag=flag, autocommit=autocommit)
     return mdb
 
-def get_tags_db(flag='r', autocommit=True):
+def get_tags_db(flag='c', autocommit=True):
     assert flag in ['r', 'c']
     tdb = CompressedSqliteDict(DICT_DB_FILE, tablename='tags', flag=flag, autocommit=autocommit)
     return tdb
@@ -124,7 +124,7 @@ def get_last_active_db(flag='r', autocommit=True):
     ladb = SqliteDict(DICT_DB_FILE, tablename='last_active', flag=flag, autocommit=autocommit)
     return ladb
 
-def get_email_db(flag='r', autocommit=True):
+def get_email_db(flag='c', autocommit=True):
     assert flag in ['r', 'c']
     edb = SqliteDict(DICT_DB_FILE, tablename='email', flag=flag, autocommit=autocommit)
     return edb
