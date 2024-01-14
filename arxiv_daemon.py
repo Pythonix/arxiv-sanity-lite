@@ -30,7 +30,7 @@ if __name__ == '__main__':
     """
 
     # query string of papers to look for
-    q = 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO'
+    q = 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO+OR+cat:cs.IT'
 
     pdb = get_papers_db(flag='c')
     mdb = get_metas_db(flag='c')
@@ -52,6 +52,9 @@ if __name__ == '__main__':
             try:
                 resp = get_response(search_query=q, start_index=k)
                 papers = parse_response(resp)
+                print(papers[0].keys())
+                print(papers[0].items())
+                input()
                 time.sleep(0.5)
                 if len(papers) == 100:
                     break # otherwise we have to try again
