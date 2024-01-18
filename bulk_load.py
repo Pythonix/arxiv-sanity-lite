@@ -48,7 +48,7 @@ def parse(response):
             if (forename := author.find("{http://arxiv.org/OAI/arXiv/}forename")) is None:
                 forename = author.find("{http://arxiv.org/OAI/arXiv/}forenames")
             if forename is not None:
-                name = author.find("{http://arxiv.org/OAI/arXiv/}keyname").text + forename.text
+                name = author.find("{http://arxiv.org/OAI/arXiv/}keyname").text + " " + forename.text
             else:
                 name = author.find("{http://arxiv.org/OAI/arXiv/}keyname").text
             data["authors"].append({
