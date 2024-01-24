@@ -11,6 +11,7 @@ import os
 import re
 import time
 from random import shuffle
+from functools import lru_cache
 
 import numpy as np
 from sklearn import svm
@@ -109,7 +110,8 @@ def random_rank():
     scores = [0 for _ in pids]
     return pids, scores
 
-def time_rank():
+@lru_cache(maxsize=1)
+def time_rank(ttl_hash):
     mdb = get_metas()
     ms = sorted(mdb.items(), key=lambda kv: kv[1]['_time'], reverse=True)
     tnow = time.time()
@@ -239,7 +241,7 @@ def main():
     elif opt_rank == 'pid':
         pids, scores, words = svm_rank(pid=opt_pid, C=C)
     elif opt_rank == 'time':
-        pids, scores = time_rank()
+        pids, scores = time_rank(round(time.time()/3600))
     elif opt_rank == 'random':
         pids, scores = random_rank()
     else:
