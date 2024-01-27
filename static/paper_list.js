@@ -97,6 +97,7 @@ const TagList = props => {
 
 // render papers into #wrap
 ReactDOM.render(<PaperList papers={papers} />, document.getElementById('wrap'));
+MathJax.typeset()
 
 // render tags into #tagwrap, if it exists
 let tagwrap_elt = document.getElementById('tagwrap');
